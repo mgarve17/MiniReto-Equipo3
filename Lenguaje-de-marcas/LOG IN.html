@@ -10,21 +10,22 @@
 
 <body>
     <header>
-        <form>
+        <form onsubmit="window.location.href='Reglas.html'; return false;">
             <figure>
                 <img src="imagenes/Log in.png" height="300">
             </figure>
             <h1>LOGIN</h1>
-            
+
             <hr>
             <label for="Email"><b>Usuario o email:</b></label><br>
             <input type="email" id="correo" name="correo" min="0" required><br><br>
 
             <label for="contraseña"><b>Contraseña:</b></label><br>
             <input type="password" id="contraseña" name="contraseña" min="7" required><br><br>
-
-            <button type="submit">Enviar <img src="imagenes/enviar.png" height="10"></button>
-            <button type="reset">Borrar <img src="imagenes/nulo.png" height="10"></button>
+            <div class="botones">
+                <button type="submit">Enviar <img src="imagenes/enviar.png" height="10"></button>
+                <button type="reset">Borrar <img src="imagenes/nulo.png" height="10"></button>
+            </div>
             <br>
             <h5><a href="Crear una cuenta.html">¿No tienes una cuenta?</a></h5>
         </form>

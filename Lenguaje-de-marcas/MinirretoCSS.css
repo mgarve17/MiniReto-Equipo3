@@ -32,9 +32,41 @@ body {
     background-color: var(--negro);
     color: var(--color-texto)
 }
-a{
+
+a {
     color: var(--color-texto);
 }
+
+nav{
+    display: flex;                 
+    justify-content: center;       
+    gap: 5px;                   
+    width: 100%;
+    background-color: var(--azul-medio);
+    padding: 10px;
+}
+
+nav a {
+    display: flex;
+    justify-content: center;
+    flex:1;
+    text-align: center;
+    justify-content: center;
+    padding: 10px 0;
+    text-decoration: none;
+    color: white;
+    background-color: var(--azul-medio);
+    border-radius:0px;
+    transition: all 0.3s ease;
+    font-size: 20px;
+  }
+
+  /* Hover y efecto visual solo con CSS */
+  nav a:hover {
+    background-color: var(--azul);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  }
 
 form {
     display: flex;
@@ -52,12 +84,13 @@ form {
     box-shadow: 0 4px 12px rgba(0, 195, 255, 0.1);
     font-family: Arial, sans-serif;
 }
+
 form hr {
-width: 100%;
-border: none;
-height: 2px;
-background-color: var(--color-texto);
-margin: 20px 0;
+    width: 100%;
+    border: none;
+    height: 2px;
+    background-color: var(--color-texto);
+    margin: 20px 0;
 }
 
 form button {
@@ -83,7 +116,7 @@ form button {
 
 form button:hover {
     background-color: var(--azul);
-    color: var(--color-texto);
+    color: var(--negro);
     border-color: var(--azul-oscuro);
 }
 
