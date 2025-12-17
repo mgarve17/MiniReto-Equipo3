@@ -13,13 +13,12 @@
    ========================= */
 
 :root {
-    --azul-claro: #4feaff;
     --blanco: #fff;
-    --azul: #4462b4;
+    --azul: #578fca;
     --azul-medio: #2c2875;
     --azul-oscuro: #111144;
     --negro: #05021a;
-    --color-texto: #e5ebff;
+    --color-texto: #e3f8ff;
     --fuente-principal: Arial, sans-serif;
 }
 
@@ -34,83 +33,8 @@ body {
     color: var(--color-texto)
 }
 
-ul strong{
-    color: var(--blanco);
-    text-decoration: underline;
-    font-size: large;
-}
-
-ul {
-  list-style-type: circle;  
-  padding-left: 20px;       
-  margin: 15px 0;           
-  border-radius: 5px;
-  color: var(--color-texto)
-}
-
-/* Estilo para cada elemento de la lista */
-ul li {
-  padding: 5px 5px;      
-  margin-bottom: 2px;
-}
-
-Section figure {
-    text-align: center;
-    margin: 1.5rem 0;
-}
-
-img {
-    margin-left: 10px;
-    border: 2px solid var(--azul-medio);
-    width: 800px;
-    height: auto;
-    
-}
-
-h1 {
-    margin-left: 10px;
-    color: var(--blanco);
-    font-size: 30px;
-    text-shadow: 2px 2px 2px var(--azul-medio),
-        -2px 2px 2px var(--azul-medio),
-        2px -2px 2px var(--azul-medio),
-        -2px -2px 2px var(--azul-medio);
-}
-
 a {
     color: var(--color-texto);
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    width: 100%;
-    background-color: var(--azul-medio);
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-nav a {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-    text-align: center;
-    justify-content: center;
-    padding: 10px 0;
-    text-decoration: none;
-    color: white;
-    background-color: var(--azul-medio);
-    border-radius: 0px;
-    transition: all 0.3s ease;
-    font-size: 20px;
-}
-
-/* Hover y efecto visual solo con CSS */
-nav a:hover {
-    background-color: var(--azul);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 form {
@@ -163,4 +87,11 @@ form button:hover {
     background-color: var(--azul);
     color: var(--negro);
     border-color: var(--azul-oscuro);
+}
+
+form .botones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
 }
