@@ -4,35 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
-    <link rel="icon" type="image/png" href="log in.jpg">
+    <link rel="icon" type="image/png" href="imagenes/Log in.png">
     <link rel="stylesheet" href="MinirretoCSS.css">
 </head>
 
 <body>
-    <heather>
-        <figure>
-            <img src="Log in.png" height="300">
-        </figure>
-        <h1>REGISTRO</h1>
-        <h5><a href="LOG IN.html">¿Ya tienes una cuenta?</a></h5>
-        <hr>
-    </heather>
-    <form>
-        <label for="usuario"><b>Usuario:</b></label><br>
-        <input type="textarea" id="usuario" name="usuario" min="0" required><br><br>
+    <header>
+        <form>
+            <figure>
+                <img src="imagenes/Log in.png" height="300">
+            </figure>
+            <h1>REGISTRO</h1>
+            <hr>
+            <label for="usuario"><b>Usuario:</b></label><br>
+            <input type="text" id="usuario" name="usuario" min="0" required><br><br>
 
-        <label for="Email"><b>Email:</b></label><br>
-        <input type="textarea" id="correo" name="correo" min="0" required><br><br>
+            <label for="Email"><b>Email:</b></label><br>
+            <input type="email" id="correo" name="correo" min="0" required><br><br>
 
-        <label for="contraseña"><b>Introduzca una contraseña de mínimo 7 caracteres:</b></label><br>
-        <input type="password" id="contraseña" name="contraseña" min="7" required><br><br>
+            <label for="contraseña"><b>Introduzca una contraseña:</b></label><br>
+            <input type="password" id="contraseña" name="contraseña" min="7" required><br><br>
 
-        <label for="contraseña"><b>Confirme su contraseña:</b></label><br>
-        <input type="password" id="contraseña" name="contraseña" min="7" required><br><br>
-
-        <button type="submit">Enviar <img src="enviar.png" height="10"></button>
-        <button type="reset">Borrar <img src="nulo.png" height="10"></button>
-    </form>
+            <label for="contraseña"><b>Confirme su contraseña:</b></label><br>
+            <input type="password" id="contraseña2" name="contraseña" min="7" required><br><br>
+            <div class="botones">
+            <button type="submit">Enviar <img src="imagenes/enviar.png" height="10"></button>
+            <button type="reset">Borrar <img src="imagenes/nulo.png" height="10"></button>
+            </div>
+            <br>
+            <h5><a href="LOG IN.html">¿Ya tienes una cuenta?</a></h5>
+        </form>
+    </header>
     <footer>
         <p><br>Tinkiwinki &copy;</p>
     </footer>

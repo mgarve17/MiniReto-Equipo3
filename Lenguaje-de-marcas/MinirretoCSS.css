@@ -14,9 +14,11 @@
 
 :root {
     --blanco: #fff;
-    --azul: #91c4ff;
-    --azul-oscuro: #0d0c22;
-    --color-texto: #ffffff;
+    --azul: #578fca;
+    --azul-medio: #2c2875;
+    --azul-oscuro: #111144;
+    --negro: #05021a;
+    --color-texto: #e3f8ff;
     --fuente-principal: Arial, sans-serif;
 }
 
@@ -27,19 +29,67 @@
 body {
     min-height: 100vh;
     font-family: var(--fuente-principal);
-    background:
-        linear-gradient(180deg,
-        var(--azul),
-        var(--azul-oscuro)
-        );
+    background-color: var(--negro);
     color: var(--color-texto)
 }
+a{
+    color: var(--color-texto);
+}
 
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  background-color: var(--azul);
-  color: var(--azul-oscuro);
-  cursor: pointer;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--azul-medio);
+    border-radius: 12px;
+    border: 4px solid;
+    border-color: var(--azul-oscuro);
+    box-shadow: 0 4px 12px rgba(0, 195, 255, 0.1);
+    font-family: Arial, sans-serif;
+}
+form hr {
+width: 100%;
+border: none;
+height: 2px;
+background-color: var(--color-texto);
+margin: 20px 0;
+}
+
+form button {
+    padding: 10px 15px;
+    border: 2px solid;
+    border-color: var(--azul-oscuro);
+    border-radius: 10px;
+    background-color: var(--azul);
+    background:
+        linear-gradient(180deg,
+            var(--azul-oscuro),
+            var(--azul-medio));
+    font-size: 16px;
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+form button:hover {
+    background-color: var(--azul);
+    color: var(--color-texto);
+    border-color: var(--azul-oscuro);
+}
+
+form .botones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
 }
