@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGLAS</title>
+    <link rel="stylesheet" href="Reglas.css">
+</head>
+<body>
+    <nav>
+        <a href="#">Indice</a>
+        <a href="Reglas.html">Reglas Hundir la Flota</a>
+        <a href="#">Ranking Juego de Rol</a>
+    </nav>
+    <h1>Reglas</h1>
+    <div style="margin: 20px 0;">
+        <img src="Imagenes/Rol.jpg" alt="Imagen de Reglas" style="max-width: 100%; height: auto;">
+    </div>
+    <ul>
+        <li><strong>Objetivo del juego</strong></li>
+        <p>Derrotar a todos los enemigos usando los ataques de los personajes.</p>
+        <p>El juego se basa exclusivamente en combates.</p>
+
+        <li><strong>Personajes Jugables</strong></li>
+        <p>Cada personaje tiene:</p>
+        <ul>
+            <li>Clase (por definir)</li>
+            <li>Vida (PV) → cuando llega a 0, el personaje queda derrotado.</li>
+            <li>Ataque (ATQ) → daño base que inflige.</li>
+            <li>Ataques → acciones ofensivas (pueden usar el ATQ base u otros valores).</li>
+        </ul>
+
+        <li><strong>Enemigos</strong></li>
+        <p>Cada enemigo tiene:</p>
+        <ul>
+            <li>Clase o tipo (por definir)</li>
+            <li>Vida (PV)</li>
+            <li>Ataque (ATQ)</li>
+        </ul>
+        <p>Siguen las mismas reglas de combate que los jugadores.</p>
+
+        <li><strong>Sistema de Combate</strong></li>
+        <p>El combate es por turnos.</p>
+        <p>Todos los personajes y enemigos participan hasta que uno de los bandos es derrotado.</p>
+
+        <li><strong>Ataques</strong></li>
+        <p>Cuando un personaje o enemigo ataca:</p>
+        <p>Se calcula el resultado del ataque según probabilidades:</p>
+        <ul>
+            <li>Fallo → no causa daño.</li>
+            <li>Ataque normal → causa daño igual a ATQ.</li>
+            <li>Ataque crítico → causa daño igual a ATQ × 2.</li>
+        </ul>
+        <p>El daño se resta directamente a la Vida del objetivo.</p>
+
+        <li><strong>Probabilidades de Ataque</strong></li>
+        <p>Cada ataque tiene tres posibles resultados:</p>
+        <ul>
+            <li>Fallo</li>
+            <li>Normal</li>
+            <li>Crítico</li>
+        </ul>
+
+        <li><strong>Derrota y Victoria</strong></li>
+        <p>Un combatiente queda derrotado cuando su Vida llega a 0.</p>
+        <p>El combate termina cuando:</p>
+        <ul>
+            <li>Todos los enemigos son derrotados → Victoria</li>
+            <li>Todos los jugadores son derrotados → Derrota</li>
+        </ul>
+    </ul>
+    <footer style="text-align: center; margin-top: 20px;">
+        <p>&copy; 2025 @TinkiWinki. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
