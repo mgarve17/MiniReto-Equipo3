@@ -51,12 +51,27 @@ public class Tablero {
     
     
 
-    public boolean validarEspacio() {//validar si el hueco está ocupado HACER
+    public boolean validarEspacio(int x, int y, int z) {//validar si el hueco está ocupado
 
         boolean validar = false;
+        
+        if (tablero[x][y].contains("*")) {
+            
+            validar=true;
+        }
+  
 
         return validar;
 
+    }
+    
+    //colocar el barco según coordenadas
+    public void colocarBarco(int x, int y, int z){
+    
+        //char para el barco en ascii
+        char barcoChar= 254;
+        
+        tablero[x][y]= barcoChar+"";
     }
 
     
