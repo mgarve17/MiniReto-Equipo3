@@ -1,0 +1,45 @@
+/* =========================
+   Reset / Base
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   Variables
+   ========================= */
+
+:root {
+    --blanco: #fff;
+    --azul: #91c4ff;
+    --azul-oscuro: #0d0c22;
+    --color-texto: #ffffff;
+    --fuente-principal: Arial, sans-serif;
+}
+
+/* =========================
+   Estilos globales
+   ========================= */
+
+body {
+    min-height: 100vh;
+    font-family: var(--fuente-principal);
+    background:
+        linear-gradient(180deg,
+        var(--azul),
+        var(--azul-oscuro)
+        );
+    color: var(--color-texto)
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--azul);
+  color: var(--azul-oscuro);
+  cursor: pointer;
+}
