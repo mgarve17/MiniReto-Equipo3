@@ -4,7 +4,7 @@
  */
 package com.mycompany.hundirlaflota;
 
-import java.util.Scanner;
+
 
 /**
  *
@@ -25,27 +25,7 @@ public class Barco {
 
         this.nombre = nombre;
         this.tamano = tamano;
-        this.tablero= new Tablero();
-    }
-
-    public void colocar(int x, int y, int z) {//colocar barco
-
-        int contador = 0;
-        
-        do{
-        if (z == 1) {//en horizontal
-            
-            tablero.colocarBarco(x , y + contador);
-            contador++;
-            
-        } else if (z == 2){//en vertical
-        
-            tablero.colocarBarco(x + contador, y );
-            contador++;
-        }
-        } while(contador <= tamano);
-        
-        System.out.println(tablero.mostrar());
+        this.tablero = new Tablero();
     }
 
     public boolean validarCoordenadas(int x, int y, int z) {//validar que hay un hueco libre
@@ -68,50 +48,6 @@ public class Barco {
         //validar posicion
         return validar;
 
-    }
-
-    public int elegirChar(char charColumna) {
-
-        int columna = 0;
-        switch (charColumna) {
-
-            case 'A' -> {
-                columna = 1;
-            }
-            case 'B' -> {
-                columna = 2;
-            }
-            case 'C' -> {
-                columna = 3;
-            }
-            case 'D' -> {
-                columna = 4;
-            }
-            case 'E' -> {
-                columna = 5;
-            }
-            case 'F' -> {
-                columna = 6;
-            }
-            case 'G' -> {
-                columna = 7;
-            }
-            case 'H' -> {
-                columna = 8;
-            }
-            case 'I' -> {
-                columna = 9;
-            }
-            case 'J' -> {
-                columna = 10;
-            }
-            default -> {
-                System.out.println("ERROR");
-            }
-
-        }
-
-        return columna;
     }
 
     public void atacar() {//meter una coordenada para atacar

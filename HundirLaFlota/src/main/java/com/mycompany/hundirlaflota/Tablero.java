@@ -59,13 +59,59 @@ public class Tablero {
 
     }
 
-    //colocar el barco según coordenadas
-    public void colocarBarco(int x, int y) {
+    //comprobar si hay un barco
+    public boolean validarAtaque(int x, int y) {
 
+        boolean validar = false;
         //char para el barco en ascii
-        char barcoChar = 254;
+        char barcoChar = 79;
 
-        tablero[x][y] = barcoChar + "";
+        if (tablero[x][y].contains(barcoChar + "")) {
+
+            validar = true;
+        }
+
+        return validar;
+    }
+
+    //atacar segun las coordea
+    public void ataque(int x, int y) {
+        //ascii para el barco tocado
+        char tocadoChar = 157;
+        tablero[x][y] = tocadoChar + "";
+    }
+
+    public void agua(int x, int y) {
+
+        //ascii para el agua
+        char aguaChar = 126;
+
+        tablero[x][y] = aguaChar + "";
+    }
+
+    //colocar el barco según coordenadas
+    public void colocarBarco(int x, int y, int z, int tamano) {
+
+        int contador = 0;
+        //char para el barco en ascii
+        char barcoChar = 79;
+
+        do {
+            if (z == 1) {//en horizontal
+                tablero[x][y + contador] = barcoChar + "";
+                contador++;
+
+            } else if (z == 2) {//en vertical
+
+                tablero[x + contador][y] = barcoChar + "";
+                contador++;
+            }
+        } while (contador <= tamano);
+    }
+    
+    //condicion de victoria
+    public void victoria(Tablero tablero){
+
     }
 
     //mostrar tablero por pantalla

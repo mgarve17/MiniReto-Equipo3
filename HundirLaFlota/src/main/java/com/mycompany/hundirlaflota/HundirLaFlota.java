@@ -18,11 +18,25 @@ public class HundirLaFlota {
         boolean salir = false;
 
         //mostrar tablero para pruebas
-        Tablero prueba = new Tablero();
-        System.out.println(prueba.mostrar());
+        Tablero pruebas = new Tablero();
+        pruebas.colocarBarco(1, 1, 1, 3);
+
+        //tablero del jugador 1
+        Tablero tablero1 = new Tablero();
+
+        //tablero de jugador 2 
+        Tablero tablero2 = new Tablero();
+
+        //tableros auxiliares para visualizar los movimientos
+        Tablero tableroAux1 = new Tablero();
+        Tablero tableroAux2 = new Tablero();
 
         //crear flota
         Barco[] flota = new Barco[4];
+        flota[0] = new Barco("Portaviones", 5);
+        flota[1] = new Barco("Acorazado", 4);
+        flota[2] = new Barco("Destructor", 3);
+        flota[3] = new Barco("submarino", 2);
 
         do {//MENU REPETITIVO
 
@@ -36,66 +50,68 @@ public class HundirLaFlota {
 
             switch (opcion) {
 
-                case 1 -> {//iniciar partida (crea la flota del jugador)
+                case 1 -> {//elegir modo
 
-                    flota[0] = new Barco("Portaviones", 5);
-                    flota[1] = new Barco("Acorazado", 4);
-                    flota[2] = new Barco("Destructor", 3);
-                    flota[3] = new Barco("submarino", 2);
-
-                    System.out.println("FLOTA CREADA");
-                    System.out.println("");
                 }
 
                 case 2 -> {//colocar barcos
+                    //contador para los espacios libres
+                    int contadorEspacios = 0;
+
+                    //variables
+                    int fila = 0;
+                    int columna = 0;
+                    int posicion = 0; //1- horizontal 2-vertical
+                    char charColumna;
 
                     for (int i = 0; i < flota.length; i++) {
 
-                        System.out.println("Colocar " + flota[i].getNombre());
-                        int fila = 0;
-                        int columna = 0;
-                        int posicion = 0; //1- horizontal 2-vertical
-
                         do {
-                            System.out.println("1. Horizontal");
-                            System.out.println("2. Vertical");
-                            posicion = new Scanner(System.in).nextInt();
+                            System.out.println("Colocar " + flota[i].getNombre());
 
-                        } while (posicion < 1 && posicion > 2);
+                            do {//pedir orientacion
+                                System.out.println("1. Horizontal");
+                                System.out.println("2. Vertical");
+                                posicion = new Scanner(System.in).nextInt();
 
-                        do {
-                            System.out.println(" Desde columna (1-10): ");
-                            columna = new Scanner(System.in).nextInt();
-                        } while (columna < 1 && columna > 10);
+                            } while (posicion < 1 && posicion > 2);
 
-                        System.out.println("Desde fila (A-J): ");// añadir control de valores
-                        char charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
+                            do {//pedir nº columna
+                                System.out.println(" Desde columna (1-10): ");
+                                columna = new Scanner(System.in).nextInt();
+                            } while (columna < 1 && columna > 10);
 
-                        //devolver nº que corresponde con el char        
-                        fila = flota[i].elegirChar(charColumna);
+                            do {//pedir letra de la fila
 
-                        //contador para los espacios libres
-                        int contadorEspacios = 0;
+                                System.out.println("Desde fila (A-J): ");// hay añadir control de valores
+                                charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
+                                //devolver nº que corresponde con el char        
+                                fila = elegirChar(charColumna);
 
-                        for (int j = 0; j < flota[i].getTamano(); j++) {
+                            } while (charColumna != 'A' && charColumna != 'B' && charColumna != 'C' && charColumna != 'D'
+                                    && charColumna != 'E' && charColumna != 'F' && charColumna != 'F' && charColumna != 'G'
+                                    && charColumna != 'H' && charColumna != 'I' && charColumna != 'J');
 
-                            if (flota[i].validarCoordenadas(fila, columna, posicion)) {
-                                contadorEspacios++;
-                            }
-                        }
-                        
-                        //si el contador de espacios vacios es igual al tamaño se puede colocar el barco
-                        if (contadorEspacios==flota[i].getTamano()) {
-         
-                            //flota[i].colocar(fila, columna, posicion, flota[i].getTamano());
-                            
                             for (int j = 0; j < flota[i].getTamano(); j++) {
-                                flota[i].colocar(fila, columna, posicion);
+
+                                if (flota[i].validarCoordenadas(fila, columna, posicion)) {
+                                    contadorEspacios++;
+                                }
                             }
-                            
+                        } while (contadorEspacios != flota[i].getTamano());
+
+                        //si el contador de espacios vacios es igual al tamaño se puede colocar el barco
+                        if (contadorEspacios == flota[i].getTamano()) {
+
+                            for (int j = 0; j < flota[i].getTamano(); j++) {
+
+                                tablero1.colocarBarco(fila, columna, posicion, flota[i].getTamano());
+                            }
+
                         }
 
-                     
+                        //mostrar tablero después de colocar el barco
+                        System.out.println(tablero1.mostrar());
 
                     }
 
@@ -103,6 +119,93 @@ public class HundirLaFlota {
 
                 case 3 -> {//atacar flota contraria
 
+                    int fila = 0;
+                    int columna = 0;
+                    char charColumna;
+                    boolean turno = true;
+                    boolean finPartida = false;
+
+                    do {//repetir turnos hasta que se finPartida=true;
+                        do {//TURNO J1 hacer una accion por turno de J1. turno = false si falla el ataque
+
+                            do {//pedir nº columna
+                                System.out.println(" Desde columna (1-10): ");
+                                columna = new Scanner(System.in).nextInt();
+                            } while (columna < 1 && columna > 10);
+
+                            do {//pedir letra de la fila
+
+                                System.out.println("Desde fila (A-J): ");// hay añadir control de valores
+                                charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
+                                //devolver nº que corresponde con el char        
+                                fila = elegirChar(charColumna);
+
+                            } while (charColumna != 'A' && charColumna != 'B' && charColumna != 'C' && charColumna != 'D'
+                                    && charColumna != 'E' && charColumna != 'F' && charColumna != 'F' && charColumna != 'G'
+                                    && charColumna != 'H' && charColumna != 'I' && charColumna != 'J');
+
+                            //comprobar que hay en las coordenadas del tablero contrario
+                            if (tablero2.validarAtaque(fila, columna)) {//si hay un barco
+
+                                //marcar ataque en el tablero auxiliar
+                                tableroAux1.ataque(fila, columna);
+
+                                //marcar ataque en el tablero del otro jugador
+                                tablero2.ataque(fila, columna);
+                                turno = true;
+
+                            } else {//si hay agua
+
+                                //marcar agua en el tablero auxiliar
+                                tableroAux1.agua(fila, columna);
+                                turno = false;
+
+                            }
+
+                        } while (turno);
+
+                        //restaurar turno para J2
+                        turno = true;
+
+                        do {//TURNO J2
+
+                            do {//pedir nº columna
+                                System.out.println(" Desde columna (1-10): ");
+                                columna = new Scanner(System.in).nextInt();
+                            } while (columna < 1 && columna > 10);
+
+                            do {//pedir letra de la fila
+
+                                System.out.println("Desde fila (A-J): ");// hay añadir control de valores
+                                charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
+                                //devolver nº que corresponde con el char        
+                                fila = elegirChar(charColumna);
+
+                            } while (charColumna != 'A' && charColumna != 'B' && charColumna != 'C' && charColumna != 'D'
+                                    && charColumna != 'E' && charColumna != 'F' && charColumna != 'F' && charColumna != 'G'
+                                    && charColumna != 'H' && charColumna != 'I' && charColumna != 'J');
+
+                            //comprobar que hay en las coordenadas del tablero contrario
+                            if (tablero1.validarAtaque(fila, columna)) {//si hay un barco
+
+                                //marcar ataque en el tablero auxiliar
+                                tableroAux2.ataque(fila, columna);
+
+                                //marcar ataque en el tablero del otro jugador
+                                tablero1.ataque(fila, columna);
+                                turno = true;
+
+                            } else {//si hay agua
+
+                                //marcar agua en el tablero auxiliar
+                                tableroAux2.agua(fila, columna);
+                                turno = false;
+
+                            }
+
+                        } while (turno);
+
+                    } while (!finPartida);
                 }
 
                 case 4 -> {//salir
@@ -113,5 +216,48 @@ public class HundirLaFlota {
 
         } while (!salir);
 
+    }
+
+    public static int elegirChar(char charColumna) {
+
+        int columna = 0;
+        switch (charColumna) {
+
+            case 'A' -> {
+                columna = 1;
+            }
+            case 'B' -> {
+                columna = 2;
+            }
+            case 'C' -> {
+                columna = 3;
+            }
+            case 'D' -> {
+                columna = 4;
+            }
+            case 'E' -> {
+                columna = 5;
+            }
+            case 'F' -> {
+                columna = 6;
+            }
+            case 'G' -> {
+                columna = 7;
+            }
+            case 'H' -> {
+                columna = 8;
+            }
+            case 'I' -> {
+                columna = 9;
+            }
+            case 'J' -> {
+                columna = 10;
+            }
+            default -> {
+                System.out.println("ERROR");
+            }
+        }
+
+        return columna;
     }
 }
