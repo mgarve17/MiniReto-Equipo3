@@ -25,33 +25,54 @@ public class Barco {
 
         this.nombre = nombre;
         this.tamano = tamano;
+        this.tablero= new Tablero();
     }
 
-    public void colocarIA() {//generación de barcos aleatoria
+    public void colocar(int x, int y, int z) {//colocar barco
+
+        int contador = 0;
+        
+        do{
+        if (z == 1) {//en horizontal
+            
+            tablero.colocarBarco(x , y + contador);
+            contador++;
+            
+        } else if (z == 2){//en vertical
+        
+            tablero.colocarBarco(x + contador, y );
+            contador++;
+        }
+        } while(contador <= tamano);
+        
+        System.out.println(tablero.mostrar());
+    }
+
+    public boolean validarCoordenadas(int x, int y, int z) {//validar que hay un hueco libre
+
+        boolean validar = false;
+        int contador = 0;
+
+        if (z == 1) {//mover de izquierda a derecha y devolver true si está vacío
+            if (tablero.validarEspacio(x, y + contador)) {
+                validar = true;
+                contador++;
+            }
+        } else if (z == 2) {//mover de arriba a abajo y devolver true si está vacío
+            if (tablero.validarEspacio(x + contador, y)) {
+                validar = true;
+                contador++;
+            }
+        }
+
+        //validar posicion
+        return validar;
 
     }
 
-    public void validarEspacio() {//colocar barco en el tablero
+    public int elegirChar(char charColumna) {
 
-        int fila = 0;
         int columna = 0;
-        int posicion = 0; //1- horizontal 2-vertical
-
-        do {
-            System.out.println("1. Horizontal");
-            System.out.println("2. Vertical");
-            System.out.println("Opcion: ");
-            posicion = new Scanner(System.in).nextInt();
-
-        } while (posicion != 1 && posicion != 2);
-
-        System.out.println(" Desde fila (1-10): ");
-        fila = new Scanner(System.in).nextInt();
-
-        System.out.println("Desde columna (A-J): ");
-        char charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
-
-        //asignar un valor numerico a la columna según la letra
         switch (charColumna) {
 
             case 'A' -> {
@@ -90,17 +111,23 @@ public class Barco {
 
         }
 
-        //validar posicion
-//        if (tablero.validarEspacio(fila, columna, posicion)) {//si devuelve true coloca el barco TERMINAR
-//            
-//            tablero.colocarBarco(fila, columna, posicion);
-//        }
-
+        return columna;
     }
 
     public void atacar() {//meter una coordenada para atacar
 
-        
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getTamano() {
+        return tamano;
+    }
+
+    public boolean isEstado() {
+        return estado;
     }
 
 }
