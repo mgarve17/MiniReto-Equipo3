@@ -34,43 +34,101 @@ body {
     color: var(--color-texto)
 }
 
-ul strong{
+p {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+header {
+    background:
+        linear-gradient(180deg,
+            var(--azul-medio),
+            var(--negro));
+}
+
+header img {
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 5px solid var(--azul-medio);
+    width: 60%;
+    height: auto;
+}
+
+ul strong {
     color: var(--blanco);
     text-decoration: underline;
     font-size: large;
 }
 
 ul {
-  list-style-type: circle;  
-  padding-left: 20px;       
-  margin: 15px 0;           
-  border-radius: 5px;
-  color: var(--color-texto)
+    list-style-type: circle;
+    padding-left: 30px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: var(--color-texto)
 }
 
 /* Estilo para cada elemento de la lista */
 ul li {
-  padding: 5px 5px;      
-  margin-bottom: 2px;
-}
-
-Section figure {
-    text-align: center;
-    margin: 1.5rem 0;
+    padding: 5px 5px;
+    margin-bottom: 2px;
 }
 
 img {
-    margin-left: 10px;
-    border: 2px solid var(--azul-medio);
-    width: 800px;
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 5px solid var(--azul-medio);
+    width: 60%;
     height: auto;
-    
+
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+caption{
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+td,
+th {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+table img {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 h1 {
-    margin-left: 10px;
+    background:
+        linear-gradient(90deg,
+            var(--azul-medio),
+            var(--negro));
+    margin-top: 10px;
+    padding-left: 10px;
     color: var(--blanco);
     font-size: 30px;
+    text-shadow: 2px 2px 2px var(--azul),
+        -2px 2px 2px var(--azul),
+        2px -2px 2px var(--azul),
+        -2px -2px 2px var(--azul);
+}
+
+h2 {
+    margin-top: 10px;
+    margin-left: 30px;
+    color: var(--blanco);
+    font-size: 20px;
     text-shadow: 2px 2px 2px var(--azul-medio),
         -2px 2px 2px var(--azul-medio),
         2px -2px 2px var(--azul-medio),
@@ -119,7 +177,7 @@ form {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     margin: 50px auto;
     padding: 20px;
     background-color: var(--azul-medio);
