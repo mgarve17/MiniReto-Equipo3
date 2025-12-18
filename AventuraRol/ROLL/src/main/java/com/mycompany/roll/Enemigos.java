@@ -99,6 +99,14 @@ public class Enemigos {
         return nombre;
     }
     
+    public int getVida(){
+        return hp;
+    }
+    
+    public boolean getCooldown(){
+        return cooldown;
+    }
+    
     @Override
     public String toString(){
         return "[Enemigos] Nombre = " + nombre + " HP = " + hp + " Cooldown = " + cooldown;
