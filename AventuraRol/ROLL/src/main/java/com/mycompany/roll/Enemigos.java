@@ -7,10 +7,16 @@ public class Enemigos {
     private int ataque;
     private boolean cooldown = false; //se puede usar el ataque especial
 
-    public Enemigos() {
-
+    public Enemigos() { //Constructor aleatorio
+        this.nombre=nombre();
+        this.hp=vida();
     }
-
+    
+    public Enemigos(String nombre, int hp){
+        this.nombre=nombre;
+        this.hp=hp;
+    }
+    
     public int restarVida(int ataque) {
         this.hp -= ataque;
         return this.hp;
@@ -37,6 +43,11 @@ public class Enemigos {
                 this.nombre = "Lobo";
         }
         return nombre;
+    }
+    
+    public int vida(){
+        this.hp=(int) (Math.random() * 11) + 10;
+        return hp;
     }
 
     public int ataque() {
@@ -81,5 +92,10 @@ public class Enemigos {
             }
         }
         return this.ataque;
+    }
+    
+    @Override
+    public String toString(){
+        return "[Enemigos] Nombre = " + nombre + " HP = " + hp + " Cooldown = " + cooldown;
     }
 }
