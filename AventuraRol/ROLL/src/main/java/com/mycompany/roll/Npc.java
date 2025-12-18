@@ -30,16 +30,16 @@ public class Npc {
     public int vida() {  //genera la vida total que tendrá el enemigo entre 10 y 20
         int vida = 0;
         switch (nombre) {
-            case "Mago":
+            case "mago":
                 vida = 8;
                 break;
-            case "Clerigo":
+            case "clerigo":
                 vida = 15;
                 break;
-            case "Barbaro":
+            case "barbaro":
                 vida = 15;
                 break;
-            case "Guerrero":
+            case "guerrero":
                 vida = 20;
         }
         return vida;
@@ -67,16 +67,16 @@ public class Npc {
                 ataque = atacks;
             } else {
                 switch(nombre){
-                    case "Mago":
+                    case "mago":
                         this.ataque= 3*atacks;
                         break;
-                    case "Clerigo":
+                    case "clerigo":
                         this.ataque=-1; //cura a alguien 1 punto de vida, hay que hacerlo en el main
                         break;
-                    case "Barbaro":
+                    case "barbaro":
                         this.ataque= 2*atacks;
                         break;
-                    case "Guerrero":
+                    case "guerrero":
                         this.ataque= -2; //hará que el siguiente ataque de los enemigos le pegue a él
                 }
             }
