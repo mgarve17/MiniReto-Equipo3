@@ -49,9 +49,6 @@ public class Barco {
 
     }
 
-    public void atacar() {//meter una coordenada para atacar
-
-    }
 
     public String getNombre() {
         return nombre;

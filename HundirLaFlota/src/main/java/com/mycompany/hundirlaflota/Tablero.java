@@ -98,11 +98,13 @@ public class Tablero {
 
         do {
             if (z == 1) {//en horizontal
+                System.out.println("X "+x +" Y: "+y+"Posicion"+z);
                 tablero[x][y + contador] = barcoChar + "";
                 contador++;
 
             } else if (z == 2) {//en vertical
 
+                System.out.println("X "+x +" Y: "+y+"Posicion"+z);
                 tablero[x + contador][y] = barcoChar + "";
                 contador++;
             }
