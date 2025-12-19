@@ -16,6 +16,7 @@ public class HundirLaFlota {
         //variables
         int opcion;//opcion del switch
         boolean salir = false;
+        int hpJ1 = 0;//vidas de los jugadores
 
         //mostrar tablero para pruebas
         Tablero pruebas = new Tablero();
@@ -37,11 +38,21 @@ public class HundirLaFlota {
         flota[1] = new Barco("Acorazado", 4);
         flota[2] = new Barco("Destructor", 3);
         flota[3] = new Barco("submarino", 2);
+        
+        //calcular vidas según el tamaño total de todos los barcos
+        for (int i = 0; i < flota.length; i++) {
+            
+            hpJ1 += flota[i].getTamano();
+        }
+        
+        
+        int hpJ2 = hpJ1;//mismo valor para el jugador dos
+        
 
         do {//MENU REPETITIVO
 
             //opciones temporales
-            System.out.println("1. Comenzar partida");
+            System.out.println("1. Comenzar partida (NO USAR)");
             System.out.println("2. Colocar barcos");
             System.out.println("3. atacar");
             System.out.println("4. salir");
@@ -122,10 +133,12 @@ public class HundirLaFlota {
                     int fila = 0;
                     int columna = 0;
                     char charColumna;
-                    boolean turno = true;
+                    
                     boolean finPartida = false;
 
                     do {//repetir turnos hasta que se finPartida=true;
+                        
+                        boolean turno = true;
                         do {//TURNO J1 hacer una accion por turno de J1. turno = false si falla el ataque
 
                             do {//pedir nº columna
@@ -149,6 +162,12 @@ public class HundirLaFlota {
 
                                 //marcar ataque en el tablero auxiliar
                                 tableroAux1.ataque(fila, columna);
+                                //restarle vida al J2
+                                hpJ2 = tablero2.restarHP(hpJ2);
+                                
+                                System.out.println("BARCO TOCADO");
+                                
+                                
 
                                 //marcar ataque en el tablero del otro jugador
                                 tablero2.ataque(fila, columna);
@@ -160,6 +179,8 @@ public class HundirLaFlota {
                                 tableroAux1.agua(fila, columna);
                                 turno = false;
 
+                                System.out.println("AGUA");
+                                System.out.println("FIN DE TURNO");
                             }
 
                         } while (turno);

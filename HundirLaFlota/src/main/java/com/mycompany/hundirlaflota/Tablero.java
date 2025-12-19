@@ -109,9 +109,11 @@ public class Tablero {
         } while (contador <= tamano);
     }
     
-    //condicion de victoria
-    public void victoria(Tablero tablero){
-
+    public int restarHP(int hp){
+    
+        hp--; //restar una vida
+        
+        return hp;
     }
 
     //mostrar tablero por pantalla
@@ -136,6 +138,10 @@ public class Tablero {
 
         return cadena;
 
+    }
+
+    public String[][] getTablero() {
+        return tablero;
     }
 
 }

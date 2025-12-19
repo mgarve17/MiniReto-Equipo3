@@ -15,7 +15,6 @@ public class Barco {
     private Tablero tablero;
     private String nombre;
     private int tamano;
-    private boolean estado;// hundido = true, tocado/no descubierto = false
 
     public Barco() {
 
@@ -62,8 +61,5 @@ public class Barco {
         return tamano;
     }
 
-    public boolean isEstado() {
-        return estado;
-    }
 
 }
