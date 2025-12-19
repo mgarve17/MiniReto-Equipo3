@@ -109,6 +109,7 @@ public class Tablero {
         } while (contador <= tamano);
     }
     
+    //restar vida cuando se recibe un ataque
     public int restarHP(int hp){
     
         hp--; //restar una vida
@@ -140,8 +141,5 @@ public class Tablero {
 
     }
 
-    public String[][] getTablero() {
-        return tablero;
-    }
 
 }

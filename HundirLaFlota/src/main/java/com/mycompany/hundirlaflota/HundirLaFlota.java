@@ -3,6 +3,7 @@
  */
 package com.mycompany.hundirlaflota;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -17,16 +18,13 @@ public class HundirLaFlota {
         int opcion;//opcion del switch
         boolean salir = false;
         int hpJ1 = 0;//vidas de los jugadores
-
-        //mostrar tablero para pruebas
-        Tablero pruebas = new Tablero();
-        pruebas.colocarBarco(1, 1, 1, 3);
+        Random random = new Random();//decisiones aleatorias de la ia
 
         //tablero del jugador 1
-        Tablero tablero1 = new Tablero();
+        Tablero tablero1 = null;
 
         //tablero de jugador 2 
-        Tablero tablero2 = new Tablero();
+        Tablero tablero2 = null;
 
         //tableros auxiliares para visualizar los movimientos
         Tablero tableroAux1 = new Tablero();
@@ -38,34 +36,27 @@ public class HundirLaFlota {
         flota[1] = new Barco("Acorazado", 4);
         flota[2] = new Barco("Destructor", 3);
         flota[3] = new Barco("submarino", 2);
-        
+
         //calcular vidas según el tamaño total de todos los barcos
         for (int i = 0; i < flota.length; i++) {
-            
+
             hpJ1 += flota[i].getTamano();
         }
-        
-        
+
         int hpJ2 = hpJ1;//mismo valor para el jugador dos
-        
 
         do {//MENU REPETITIVO
 
             //opciones temporales
-            System.out.println("1. Comenzar partida (NO USAR)");
-            System.out.println("2. Colocar barcos");
-            System.out.println("3. atacar");
-            System.out.println("4. salir");
+            System.out.println("1. Colocar barcos");
+            System.out.println("2. Comenzar partida");
+            System.out.println("3. salir");
 
             opcion = new Scanner(System.in).nextInt();
 
             switch (opcion) {
 
-                case 1 -> {//elegir modo
-
-                }
-
-                case 2 -> {//colocar barcos
+                case 1 -> {//colocar barcos
                     //contador para los espacios libres
                     int contadorEspacios = 0;
 
@@ -75,6 +66,9 @@ public class HundirLaFlota {
                     int posicion = 0; //1- horizontal 2-vertical
                     char charColumna;
 
+                    //COLOCAR BARCOS JUGADOR 1
+                    tablero1 = new Tablero();
+                    System.out.println("\tTABLERO JUGADOR 1\n" + tablero1.mostrar());
                     for (int i = 0; i < flota.length; i++) {
 
                         do {
@@ -117,27 +111,67 @@ public class HundirLaFlota {
                             for (int j = 0; j < flota[i].getTamano(); j++) {
 
                                 tablero1.colocarBarco(fila, columna, posicion, flota[i].getTamano());
+                                contadorEspacios = 0;//resetear contador
                             }
 
+                        } else {
+
+                            System.out.println("No se puede colocar el barco en esas coordenadas");
                         }
 
                         //mostrar tablero después de colocar el barco
-                        System.out.println(tablero1.mostrar());
+                        System.out.println("\tTABLERO JUGADOR 1\n" + tablero1.mostrar());
 
                     }
 
+                    //BARCOS ALEATORIOS DE LA IA
+                    tablero2 = new Tablero();
+                    for (int i = 0; i < flota.length; i++) {
+
+                        //variables 
+                        int posicionRandom = random.nextInt(2) + 1;
+                        int filaRandom = random.nextInt(10) + 1;
+                        int columnaRandom = random.nextInt(10) + 1;
+
+                        do {
+                            for (int j = 0; j < flota[i].getTamano(); j++) {
+
+                                if (flota[i].validarCoordenadas(filaRandom, columnaRandom, posicionRandom)) {
+                                    contadorEspacios++;
+                                }
+                            }
+                        } while (contadorEspacios != flota[i].getTamano());
+
+                        if (contadorEspacios == flota[i].getTamano()) {
+
+                            for (int j = 0; j < flota[i].getTamano(); j++) {
+
+                                tablero2.colocarBarco(filaRandom, columnaRandom, posicionRandom, flota[i].getTamano());
+                                contadorEspacios = 0;//resetear contador
+                            }
+
+                        } else {
+
+                            System.out.println("No se puede colocar el barco en esas coordenadas");
+                        }
+
+                    }
+
+                    // BORRAR   mostrar tablero de la ia 
+                    System.out.println("\tTABLERO IA\n" + tablero2.mostrar());
+
                 }
 
-                case 3 -> {//atacar flota contraria
+                case 2 -> {//atacar flota contraria
 
                     int fila = 0;
                     int columna = 0;
                     char charColumna;
-                    
+
                     boolean finPartida = false;
 
                     do {//repetir turnos hasta que se finPartida=true;
-                        
+
                         boolean turno = true;
                         do {//TURNO J1 hacer una accion por turno de J1. turno = false si falla el ataque
 
@@ -164,14 +198,20 @@ public class HundirLaFlota {
                                 tableroAux1.ataque(fila, columna);
                                 //restarle vida al J2
                                 hpJ2 = tablero2.restarHP(hpJ2);
-                                
-                                System.out.println("BARCO TOCADO");
-                                
-                                
+
+                                System.out.println("--BARCO TOCADO--");
 
                                 //marcar ataque en el tablero del otro jugador
                                 tablero2.ataque(fila, columna);
                                 turno = true;
+
+                                //si la vida llega a 0 se termina la partida
+                                if (hpJ2 == 0) {
+
+                                    System.out.println("FIN DE PARTIDA. \n JUGADOR 1 GANA");
+                                    finPartida = true;
+
+                                }
 
                             } else {//si hay agua
 
@@ -180,7 +220,7 @@ public class HundirLaFlota {
                                 turno = false;
 
                                 System.out.println("AGUA");
-                                System.out.println("FIN DE TURNO");
+                                System.out.println("--FIN DE TURNO--");
                             }
 
                         } while (turno);
@@ -214,13 +254,27 @@ public class HundirLaFlota {
 
                                 //marcar ataque en el tablero del otro jugador
                                 tablero1.ataque(fila, columna);
-                                turno = true;
+                                //restar vida a J1
+                                hpJ1 = tablero2.restarHP(hpJ1);
+
+                                System.out.println("--BARCO TOCADO--");
+
+                                //si la vida llega a 0 se termina la partida
+                                if (hpJ1 == 0) {
+
+                                    System.out.println("FIN DE PARTIDA. \n JUGADOR 2 GANA");
+                                    finPartida = true;
+
+                                }
 
                             } else {//si hay agua
 
                                 //marcar agua en el tablero auxiliar
                                 tableroAux2.agua(fila, columna);
                                 turno = false;
+
+                                System.out.println("AGUA");
+                                System.out.println("--FIN DE TURNO--");
 
                             }
 
@@ -229,7 +283,7 @@ public class HundirLaFlota {
                     } while (!finPartida);
                 }
 
-                case 4 -> {//salir
+                case 3 -> {//salir
 
                     salir = true;
                 }
