@@ -56,113 +56,120 @@ public class HundirLaFlota {
 
             switch (opcion) {
 
-                case 1 -> {//colocar barcos
-                    
+                case 1 -> { //colocar barcos
 
-
+                    int contadorEspacios = 0;
                     //variables
                     int fila = 0;
                     int columna = 0;
                     int posicion = 0; //1- horizontal 2-vertical
                     char charColumna;
+                    boolean siguiente = false;
 
                     //COLOCAR BARCOS JUGADOR 1
                     tablero1 = new Tablero();
-//                    System.out.println("\tTABLERO JUGADOR 1\n" + tablero1.mostrar());
-//                    for (int i = 0; i < flota.length; i++) {
-//                        
-//                        //contador para los espacios libres
-//                    int contadorEspacios = 0;
-//                        do {
-//                            System.out.println("Colocar " + flota[i].getNombre());
-//
-//                            do {//pedir orientacion
-//                                System.out.println("1. Horizontal");
-//                                System.out.println("2. Vertical");
-//                                posicion = new Scanner(System.in).nextInt();
-//
-//                            } while (posicion < 1 && posicion > 2);
-//
-//                            do {//pedir nº columna
-//                                System.out.println(" Desde columna (1-10): ");
-//                                columna = new Scanner(System.in).nextInt();
-//                            } while (columna < 1 && columna > 10);
-//
-//                            do {//pedir letra de la fila
-//
-//                                System.out.println("Desde fila (A-J): ");// hay añadir control de valores
-//                                charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
-//                                //devolver nº que corresponde con el char        
-//                                fila = elegirChar(charColumna);
-//
-//                            } while (charColumna != 'A' && charColumna != 'B' && charColumna != 'C' && charColumna != 'D'
-//                                    && charColumna != 'E' && charColumna != 'F' && charColumna != 'F' && charColumna != 'G'
-//                                    && charColumna != 'H' && charColumna != 'I' && charColumna != 'J');
-//
-//                            for (int j = 0; j < flota[i].getTamano(); j++) {
-//
-//                                if (flota[i].validarCoordenadas(fila, columna, posicion)) {
-//                                    contadorEspacios++;
-//                                }
-//                            }
-//                        } while (contadorEspacios != flota[i].getTamano());
-//
-//                        //si el contador de espacios vacios es igual al tamaño se puede colocar el barco
-//                        if (contadorEspacios == flota[i].getTamano()) {
-//
-//                            System.out.println("Espacio validado.");
-//                            for (int j = 0; j < flota[i].getTamano(); j++) {
-//
-//                                tablero1.colocarBarco(fila, columna, posicion, flota[i].getTamano());
-//                                contadorEspacios = 0;//resetear contador
-//                            }
-//
-//                        } else {
-//
-//                            System.out.println("No se puede colocar el barco en esas coordenadas");
-//                        }
-//
-//                        //mostrar tablero después de colocar el barco
-//                        System.out.println("\tTABLERO JUGADOR 1\n" + tablero1.mostrar());
-//
-//                    }
+                    System.out.println("\tTABLERO JUGADOR 1\n" + tablero1.mostrar());
+                    for (int i = 0; i < flota.length; i++) {
+
+                        do {
+                            contadorEspacios = 0;
+                            siguiente = false;
+
+                            System.out.println("Colocar " + flota[i].getNombre());
+
+                            do {//pedir orientacion
+                                System.out.println("1. Horizontal");
+                                System.out.println("2. Vertical");
+                                posicion = new Scanner(System.in).nextInt();
+                            } while (posicion < 1 || posicion > 2);
+
+                            do {//pedir nº columna
+                                System.out.println(" Desde columna (1-10): ");
+                                columna = new Scanner(System.in).nextInt();
+                            } while (columna < 1 || columna > 10);
+
+                            do {//pedir letra de la fila
+                                System.out.println("Desde fila (A-J): ");// hay añadir control de valores
+                                charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
+                                //devolver nº que corresponde con el char        
+                                fila = elegirChar(charColumna);
+                            } while (fila < 1 || fila > 10);
+
+                            //comprobar si el barco cabe en el tablero
+                            if (posicion == 1 && columna + flota[i].getTamano() - 1 > 10) {
+                                System.out.println("El barco no cabe horizontalmente");
+                            }
+
+                            if (posicion == 2 && fila + flota[i].getTamano() - 1 > 10) {
+                                System.out.println("El barco no cabe verticalmente");
+
+                            }
+                            contadorEspacios = 0;
+                            for (int j = 0; j < flota[i].getTamano(); j++) {
+                                if (tablero1.validarEspacio(fila, columna, posicion, j)) {
+                                    contadorEspacios++;
+                                }
+                            }
+
+                            if (contadorEspacios == flota[i].getTamano()) {
+                                System.out.println("Posición validada");
+                                tablero1.colocarBarco(fila, columna, posicion, flota[i].getTamano());
+                                siguiente = true;
+                            }
+
+                        } while (!siguiente);
+
+                        contadorEspacios = 0; //resetear contador
+
+                        //mostrar tablero después de colocar el barco
+                        System.out.println("\tTABLERO JUGADOR 1\n" + tablero1.mostrar());
+
+                    }
 
                     //BARCOS ALEATORIOS DE LA IA
                     tablero2 = new Tablero();
                     System.out.println(tablero2.mostrar());
+
                     for (int i = 0; i < flota.length; i++) {
 
-                        //contador para los espacios libres
-                        int contadorEspacios = 0;
-                        //variables 
-                        int posicionRandom = random.nextInt(2) + 1;
-                        int filaRandom = random.nextInt(10) + 1;
-                        int columnaRandom = random.nextInt(10) + 1;
+                        contadorEspacios = 0;
+                        siguiente = false;
 
-                        System.out.println("Colocar " + flota[i].getNombre());
+                        int posicionRandom;
+                        int filaRandom;
+                        int columnaRandom;
+
+                        //System.out.println("Colocar " + flota[i].getNombre());
+
                         do {
-                            for (int j = 0; j < flota[i].getTamano(); j++) {
+                            contadorEspacios = 0;
 
-                                if (flota[i].validarCoordenadas(filaRandom, columnaRandom, posicionRandom)) {
+                            // generar orientación y posición aleatoria
+                            posicionRandom = random.nextInt(2) + 1;
+                            filaRandom = random.nextInt(10) + 1;
+                            columnaRandom = random.nextInt(10) + 1;
+
+                            // comprobar si el barco cabe en el tablero
+                            if ((posicionRandom == 1 && columnaRandom + flota[i].getTamano() - 1 > 10)
+                                    || (posicionRandom == 2 && filaRandom + flota[i].getTamano() - 1 > 10)) {
+                                continue; // o simplemente no hacer nada y repetir el ciclo
+                            }
+
+                            // validar espacios libres
+                            for (int j = 0; j < flota[i].getTamano(); j++) {
+                                if (tablero2.validarEspacio(filaRandom, columnaRandom, posicionRandom, j)) {
                                     contadorEspacios++;
                                 }
                             }
-                        } while (contadorEspacios != flota[i].getTamano());
 
-                        if (contadorEspacios == flota[i].getTamano()) {
-
-                            System.out.println("Espacio validado.");
-                            for (int j = 0; j < flota[i].getTamano(); j++) {
-
-                                System.out.println("fila random: "+filaRandom + "Columna Random"+columnaRandom + "posicion"+posicionRandom);
+                            // si todos los espacios están libres, colocar el barco
+                            if (contadorEspacios == flota[i].getTamano()) {
+                                //System.out.println("Posición validada");
                                 tablero2.colocarBarco(filaRandom, columnaRandom, posicionRandom, flota[i].getTamano());
-                                contadorEspacios = 0;//resetear contador
+                                siguiente = true;
                             }
 
-                        } else {
-
-                            System.out.println("No se puede colocar el barco en esas coordenadas");
-                        }
+                        } while (!siguiente);
 
                     }
 
@@ -175,7 +182,7 @@ public class HundirLaFlota {
 
                     int fila = 0;
                     int columna = 0;
-                    char charColumna;
+                    char charFila;
 
                     boolean finPartida = false;
 
@@ -192,13 +199,13 @@ public class HundirLaFlota {
                             do {//pedir letra de la fila
 
                                 System.out.println("Desde fila (A-J): ");// hay añadir control de valores
-                                charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
+                                charFila = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
                                 //devolver nº que corresponde con el char        
-                                fila = elegirChar(charColumna);
+                                fila = elegirChar(charFila);
 
-                            } while (charColumna != 'A' && charColumna != 'B' && charColumna != 'C' && charColumna != 'D'
-                                    && charColumna != 'E' && charColumna != 'F' && charColumna != 'F' && charColumna != 'G'
-                                    && charColumna != 'H' && charColumna != 'I' && charColumna != 'J');
+                            } while (charFila != 'A' && charFila != 'B' && charFila != 'C' && charFila != 'D'
+                                    && charFila != 'E' && charFila != 'F' && charFila != 'F' && charFila != 'G'
+                                    && charFila != 'H' && charFila != 'I' && charFila != 'J');
 
                             //comprobar que hay en las coordenadas del tablero contrario
                             if (tablero2.validarAtaque(fila, columna)) {//si hay un barco
@@ -247,13 +254,13 @@ public class HundirLaFlota {
                             do {//pedir letra de la fila
 
                                 System.out.println("Desde fila (A-J): ");// hay añadir control de valores
-                                charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
+                                charFila = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
                                 //devolver nº que corresponde con el char        
-                                fila = elegirChar(charColumna);
+                                fila = elegirChar(charFila);
 
-                            } while (charColumna != 'A' && charColumna != 'B' && charColumna != 'C' && charColumna != 'D'
-                                    && charColumna != 'E' && charColumna != 'F' && charColumna != 'F' && charColumna != 'G'
-                                    && charColumna != 'H' && charColumna != 'I' && charColumna != 'J');
+                            } while (charFila != 'A' && charFila != 'B' && charFila != 'C' && charFila != 'D'
+                                    && charFila != 'E' && charFila != 'F' && charFila != 'F' && charFila != 'G'
+                                    && charFila != 'H' && charFila != 'I' && charFila != 'J');
 
                             //comprobar que hay en las coordenadas del tablero contrario
                             if (tablero1.validarAtaque(fila, columna)) {//si hay un barco
@@ -302,46 +309,46 @@ public class HundirLaFlota {
 
     }
 
-    public static int elegirChar(char charColumna) {
+    public static int elegirChar(char charFila) {
 
-        int columna = 0;
-        switch (charColumna) {
+        int fila = 0;
+        switch (charFila) {
 
             case 'A' -> {
-                columna = 1;
+                fila = 1;
             }
             case 'B' -> {
-                columna = 2;
+                fila = 2;
             }
             case 'C' -> {
-                columna = 3;
+                fila = 3;
             }
             case 'D' -> {
-                columna = 4;
+                fila = 4;
             }
             case 'E' -> {
-                columna = 5;
+                fila = 5;
             }
             case 'F' -> {
-                columna = 6;
+                fila = 6;
             }
             case 'G' -> {
-                columna = 7;
+                fila = 7;
             }
             case 'H' -> {
-                columna = 8;
+                fila = 8;
             }
             case 'I' -> {
-                columna = 9;
+                fila = 9;
             }
             case 'J' -> {
-                columna = 10;
+                fila = 10;
             }
             default -> {
                 System.out.println("ERROR");
             }
         }
 
-        return columna;
+        return fila;
     }
 }

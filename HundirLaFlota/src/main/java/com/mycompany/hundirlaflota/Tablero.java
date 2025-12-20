@@ -46,17 +46,54 @@ public class Tablero {
         }
     }
 
-    public boolean validarEspacio(int x, int y) {//validar si el hueco está ocupado
+    public boolean validarEspacio(int x, int y, int z, int incremento) {//validar si la extensión está ocupada
 
-        boolean validar = false;
+        boolean validar = true;
 
-        if (tablero[x][y].contains("*")) {
+        if (z == 1) { // Horizontal
+            //verificar que no se salga del tablero
+            if (y + incremento > 10 || y + incremento >= tablero.length) {
+                validar = false;
+            } else if (!tablero[x][y + incremento].equals("*")) { //verificar si está ocupado
+                validar = false;
+            }
 
-            validar = true;
+        } else if (z == 2) { // Vertical
+            //verificar que no se salga del tablero
+            if (x + incremento > 10 || x + incremento >= tablero.length) {
+                validar = false;
+            } else if (!tablero[x + incremento][y].equals("*")) { //verificar si está ocupado
+                validar = false;
+            }
+
+        } else { //orientación incorrecta
+            validar = false;
         }
 
         return validar;
 
+    }
+
+    //colocar el barco según coordenadas
+    public void colocarBarco(int x, int y, int z, int tamano) {
+
+        int contador = 0;
+        //char para el barco en ascii
+        char barcoChar = 79;
+
+        do {
+            if (z == 1) {//en horizontal
+                //System.out.println("X "+x +" Y: "+y+"Posicion"+z);
+                tablero[x][y + contador] = barcoChar + "";
+                contador++;
+
+            } else if (z == 2) {//en vertical
+
+                //System.out.println("X "+x +" Y: "+y+"Posicion"+z);
+                tablero[x + contador][y] = barcoChar + "";
+                contador++;
+            }
+        } while (contador < tamano);
     }
 
     //comprobar si hay un barco
@@ -89,33 +126,11 @@ public class Tablero {
         tablero[x][y] = aguaChar + "";
     }
 
-    //colocar el barco según coordenadas
-    public void colocarBarco(int x, int y, int z, int tamano) {
-
-        int contador = 0;
-        //char para el barco en ascii
-        char barcoChar = 79;
-
-        do {
-            if (z == 1) {//en horizontal
-                System.out.println("X "+x +" Y: "+y+"Posicion"+z);
-                tablero[x][y + contador] = barcoChar + "";
-                contador++;
-
-            } else if (z == 2) {//en vertical
-
-                System.out.println("X "+x +" Y: "+y+"Posicion"+z);
-                tablero[x + contador][y] = barcoChar + "";
-                contador++;
-            }
-        } while (contador <= tamano);
-    }
-    
     //restar vida cuando se recibe un ataque
-    public int restarHP(int hp){
-    
+    public int restarHP(int hp) {
+
         hp--; //restar una vida
-        
+
         return hp;
     }
 
@@ -142,6 +157,5 @@ public class Tablero {
         return cadena;
 
     }
-
 
 }
