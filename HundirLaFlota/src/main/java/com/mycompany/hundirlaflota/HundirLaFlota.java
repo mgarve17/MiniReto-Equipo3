@@ -83,17 +83,17 @@ public class HundirLaFlota {
                                 posicion = new Scanner(System.in).nextInt();
                             } while (posicion < 1 || posicion > 2);
 
-                            do {//pedir nº columna
-                                System.out.println(" Desde columna (1-10): ");
-                                columna = new Scanner(System.in).nextInt();
-                            } while (columna < 1 || columna > 10);
-
                             do {//pedir letra de la fila
                                 System.out.println("Desde fila (A-J): ");// hay añadir control de valores
                                 charColumna = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
                                 //devolver nº que corresponde con el char        
                                 fila = elegirChar(charColumna);
                             } while (fila < 1 || fila > 10);
+
+                            do {//pedir nº columna
+                                System.out.println(" Desde columna (1-10): ");
+                                columna = new Scanner(System.in).nextInt();
+                            } while (columna < 1 || columna > 10);
 
                             //comprobar si el barco cabe en el tablero
                             if (posicion == 1 && columna + flota[i].getTamano() - 1 > 10) {
@@ -112,7 +112,7 @@ public class HundirLaFlota {
                             }
 
                             if (contadorEspacios == flota[i].getTamano()) {
-                                System.out.println("Posición validada");
+                                
                                 tablero1.colocarBarco(fila, columna, posicion, flota[i].getTamano());
                                 siguiente = true;
                             }
@@ -128,7 +128,6 @@ public class HundirLaFlota {
 
                     //BARCOS ALEATORIOS DE LA IA
                     tablero2 = new Tablero();
-                    System.out.println(tablero2.mostrar());
 
                     for (int i = 0; i < flota.length; i++) {
 
@@ -140,33 +139,36 @@ public class HundirLaFlota {
                         int columnaRandom;
 
                         //System.out.println("Colocar " + flota[i].getNombre());
-
                         do {
                             contadorEspacios = 0;
 
-                            // generar orientación y posición aleatoria
-                            posicionRandom = random.nextInt(2) + 1;
-                            filaRandom = random.nextInt(10) + 1;
-                            columnaRandom = random.nextInt(10) + 1;
+                            // Generar orientación y posición aleatoria
+                            posicionRandom = random.nextInt(2) + 1; // 1-horizontal, 2-vertical
+                            filaRandom = random.nextInt(10) + 1;    // 1-10
+                            columnaRandom = random.nextInt(10) + 1; // 1-10
 
-                            // comprobar si el barco cabe en el tablero
-                            if ((posicionRandom == 1 && columnaRandom + flota[i].getTamano() - 1 > 10)
-                                    || (posicionRandom == 2 && filaRandom + flota[i].getTamano() - 1 > 10)) {
-                                continue; // o simplemente no hacer nada y repetir el ciclo
+                            // Verificar si el barco cabe en el tablero
+                            boolean validar = true;
+                            if (posicionRandom == 1 && columnaRandom + flota[i].getTamano() - 1 > 10) {
+                                validar = false;
+                            }
+                            if (posicionRandom == 2 && filaRandom + flota[i].getTamano() - 1 > 10) {
+                                validar = false;
                             }
 
-                            // validar espacios libres
-                            for (int j = 0; j < flota[i].getTamano(); j++) {
-                                if (tablero2.validarEspacio(filaRandom, columnaRandom, posicionRandom, j)) {
-                                    contadorEspacios++;
+                            // Solo colocar si validar == true
+                            if (validar) {
+                                for (int j = 0; j < flota[i].getTamano(); j++) {
+                                    if (tablero2.validarEspacio(filaRandom, columnaRandom, posicionRandom, j)) {
+                                        contadorEspacios++;
+                                    }
                                 }
-                            }
 
-                            // si todos los espacios están libres, colocar el barco
-                            if (contadorEspacios == flota[i].getTamano()) {
-                                //System.out.println("Posición validada");
-                                tablero2.colocarBarco(filaRandom, columnaRandom, posicionRandom, flota[i].getTamano());
-                                siguiente = true;
+                                if (contadorEspacios == flota[i].getTamano()) {
+
+                                    tablero2.colocarBarco(filaRandom, columnaRandom, posicionRandom, flota[i].getTamano());
+                                    siguiente = true;
+                                }
                             }
 
                         } while (!siguiente);
@@ -180,127 +182,131 @@ public class HundirLaFlota {
 
                 case 2 -> {//atacar flota contraria
 
-                    int fila = 0;
-                    int columna = 0;
-                    char charFila;
+                    if (tablero1 == null) {
 
-                    boolean finPartida = false;
+                        System.out.println("No ha colocado los barcos en el tablero");
+                    } else {
+                        int fila = 0;
+                        int columna = 0;
+                        char charFila;
 
-                    do {//repetir turnos hasta que se finPartida=true;
+                        boolean finPartida = false;
 
-                        boolean turno = true;
-                        do {//TURNO J1 hacer una accion por turno de J1. turno = false si falla el ataque
+                        do {//repetir turnos hasta que se finPartida=true;
 
-                            do {//pedir nº columna
-                                System.out.println(" Desde columna (1-10): ");
-                                columna = new Scanner(System.in).nextInt();
-                            } while (columna < 1 && columna > 10);
+                            boolean turno = true;
+                            do {//TURNO J1 hacer una accion por turno de J1. turno = false si falla el ataque
 
-                            do {//pedir letra de la fila
-
-                                System.out.println("Desde fila (A-J): ");// hay añadir control de valores
-                                charFila = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
-                                //devolver nº que corresponde con el char        
-                                fila = elegirChar(charFila);
-
-                            } while (charFila != 'A' && charFila != 'B' && charFila != 'C' && charFila != 'D'
-                                    && charFila != 'E' && charFila != 'F' && charFila != 'F' && charFila != 'G'
-                                    && charFila != 'H' && charFila != 'I' && charFila != 'J');
-
-                            //comprobar que hay en las coordenadas del tablero contrario
-                            if (tablero2.validarAtaque(fila, columna)) {//si hay un barco
-
-                                //marcar ataque en el tablero auxiliar
-                                tableroAux1.ataque(fila, columna);
-                                //restarle vida al J2
-                                hpJ2 = tablero2.restarHP(hpJ2);
-
-                                System.out.println("--BARCO TOCADO--");
-
-                                //marcar ataque en el tablero del otro jugador
-                                tablero2.ataque(fila, columna);
-                                turno = true;
-
-                                //si la vida llega a 0 se termina la partida
-                                if (hpJ2 == 0) {
-
-                                    System.out.println("FIN DE PARTIDA. \n JUGADOR 1 GANA");
-                                    finPartida = true;
-
-                                }
-
-                            } else {//si hay agua
-
-                                //marcar agua en el tablero auxiliar
-                                tableroAux1.agua(fila, columna);
-                                turno = false;
-
-                                System.out.println("AGUA");
-                                System.out.println("--FIN DE TURNO--");
-                            }
-
-                        } while (turno);
-
-                        //restaurar turno para J2
-                        turno = true;
-
-                        do {//TURNO J2
-
-                            do {//pedir nº columna
-                                System.out.println(" Desde columna (1-10): ");
-                                columna = new Scanner(System.in).nextInt();
-                            } while (columna < 1 && columna > 10);
-
-                            do {//pedir letra de la fila
-
-                                System.out.println("Desde fila (A-J): ");// hay añadir control de valores
-                                charFila = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
-                                //devolver nº que corresponde con el char        
-                                fila = elegirChar(charFila);
-
-                            } while (charFila != 'A' && charFila != 'B' && charFila != 'C' && charFila != 'D'
-                                    && charFila != 'E' && charFila != 'F' && charFila != 'F' && charFila != 'G'
-                                    && charFila != 'H' && charFila != 'I' && charFila != 'J');
-
-                            //comprobar que hay en las coordenadas del tablero contrario
-                            if (tablero1.validarAtaque(fila, columna)) {//si hay un barco
-
-                                //marcar ataque en el tablero auxiliar
-                                tableroAux2.ataque(fila, columna);
-
-                                //marcar ataque en el tablero del otro jugador
-                                tablero1.ataque(fila, columna);
-                                //restar vida a J1
-                                hpJ1 = tablero2.restarHP(hpJ1);
-
-                                System.out.println("--BARCO TOCADO--");
-
-                                //si la vida llega a 0 se termina la partida
                                 if (hpJ1 == 0) {
 
-                                    System.out.println("FIN DE PARTIDA. \n JUGADOR 2 GANA");
-                                    finPartida = true;
+                                    turno = false;
+                                } else {
+                                    System.out.println("TURNO DEL JUGADOR");
+                                    //System.out.println("introducir coordenadas 0, 0 para rendirse");
 
+                                    do {//pedir letra de la fila
+
+                                        System.out.println("Desde fila (A-J): ");// hay añadir control de valores
+                                        charFila = new Scanner(System.in).nextLine().trim().toUpperCase().charAt(0);
+                                        //devolver nº que corresponde con el char        
+                                        fila = elegirChar(charFila);
+
+                                    } while (fila < 1 || fila > 10);
+
+                                    do {//pedir nº columna
+                                        System.out.println(" Desde columna (1-10): ");
+                                        columna = new Scanner(System.in).nextInt();
+                                    } while (columna < 1 || columna > 10);
+
+                                    //comprobar que hay en las coordenadas del tablero contrario
+                                    if (tablero2.validarAtaque(fila, columna)) {//si hay un barco
+
+                                        //marcar ataque en el tablero auxiliar
+                                        tableroAux1.ataque(fila, columna);
+                                        //restarle vida al J2
+                                        hpJ2--;
+
+                                        System.out.println("--BARCO TOCADO--");
+                                        System.out.println(tableroAux1.mostrar());//mostrar tablero con los movimientos de J1
+
+                                        turno = true;
+
+                                        //si la vida llega a 0 se termina la partida
+                                        if (hpJ2 == 0) {
+
+                                            System.out.println("FIN DE PARTIDA. \n JUGADOR 1 GANA");
+                                            finPartida = true;
+                                            turno = false;
+
+                                        }
+
+                                    } else {//si hay agua
+
+                                        //marcar agua en el tablero auxiliar
+                                        tableroAux1.agua(fila, columna);
+                                        turno = false;
+
+                                        System.out.println("AGUA");
+                                        System.out.println(tableroAux1.mostrar());
+                                        System.out.println("--FIN DE TURNO--");
+                                    }
                                 }
 
-                            } else {//si hay agua
+                            } while (turno);
 
-                                //marcar agua en el tablero auxiliar
-                                tableroAux2.agua(fila, columna);
-                                turno = false;
+                            //restaurar turno para la IA
+                            turno = true;
 
-                                System.out.println("AGUA");
-                                System.out.println("--FIN DE TURNO--");
+                            do {//TURNO IA                            
 
-                            }
+                                if (hpJ2 == 0) {
+                                    turno = false;
+                                } else {
+                                    System.out.println("TURNO DE LA IA");
+                                    int columnaRandom = random.nextInt(10) + 1;
+                                    int filaRandom = random.nextInt(10) + 1;
 
-                        } while (turno);
+                                    //comprobar que hay en las coordenadas del tablero contrario
+                                    if (tablero1.validarAtaque(filaRandom, columnaRandom)) {//si hay un barco
 
-                    } while (!finPartida);
+                                        //marcar ataque en el tablero del otro jugador
+                                        tablero1.ataque(filaRandom, columnaRandom);
+                                        //restar vida a J1
+                                        hpJ1--;
+
+                                        System.out.println("--BARCO TOCADO--");
+                                        System.out.println(tablero1.mostrar());
+
+                                        //si la vida llega a 0 se termina la partida
+                                        if (hpJ1 == 0) {
+
+                                            System.out.println("FIN DE PARTIDA. \n JUGADOR 2 GANA");
+                                            finPartida = true;
+                                            turno = false;
+
+                                        }
+
+                                    } else {//si hay agua
+
+                                        //marcar agua en el tablero auxiliar
+                                        tableroAux2.agua(fila, columna);
+                                        turno = false;
+
+                                        System.out.println("AGUA");
+                                        System.out.println("--FIN DE TURNO--");
+
+                                    }
+                                }
+
+                            } while (turno);
+
+                        } while (!finPartida);
+                    }
                 }
 
                 case 3 -> {//salir
 
+                    System.out.println("Gracias por jugar");
                     salir = true;
                 }
             }

@@ -126,13 +126,6 @@ public class Tablero {
         tablero[x][y] = aguaChar + "";
     }
 
-    //restar vida cuando se recibe un ataque
-    public int restarHP(int hp) {
-
-        hp--; //restar una vida
-
-        return hp;
-    }
 
     //mostrar tablero por pantalla
     public String mostrar() {
