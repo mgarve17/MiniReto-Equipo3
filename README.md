@@ -25,9 +25,19 @@
 
 ## Introducción
 
-## Miembros del equipo
+Documentación del desarrollo del software de juegos básicos. Este espacio contendrá los miembros que han participado en el proceso, el desarrollo de los juegos con su web complementaria, y máquinas virtuales junto los manuales destinados a su compresión y uso.
+
+## Miembros del equipo **Tinkiwinki**
+
+- Maya García Velasco  
+- Naya Ruiz Ruano  
+- Isaac Mantu Nazila  
+- Marcos Villanueva Campo  
+- Manuel González Encinas 
 
 ## Implementación y despliegue
+
+[Despliegue en Windows 11 📑](/Manuales/ManualDeDespliegueW11.pdf") | [Despliegue en Linux 📑](/Manuales/ManualDespliegueLinux.pdf)
 
 ## Web
 
