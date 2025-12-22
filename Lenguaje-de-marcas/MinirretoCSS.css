@@ -1,0 +1,224 @@
+/* =========================
+   Reset / Base
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   Variables
+   ========================= */
+
+:root {
+    --azul-claro: #4feaff;
+    --blanco: #fff;
+    --azul: #4462b4;
+    --azul-medio: #2c2875;
+    --azul-oscuro: #111144;
+    --negro: #05021a;
+    --color-texto: #e5ebff;
+    --fuente-principal: Arial, sans-serif;
+}
+
+/* =========================
+   Estilos globales
+   ========================= */
+
+body {
+    min-height: 100vh;
+    font-family: var(--fuente-principal);
+    background-color: var(--negro);
+    color: var(--color-texto)
+}
+
+p {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+header {
+    background:
+        linear-gradient(180deg,
+            var(--azul-medio),
+            var(--negro));
+}
+
+header img {
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 5px solid var(--azul-medio);
+    width: 60%;
+    height: auto;
+}
+
+ul strong {
+    color: var(--blanco);
+    text-decoration: underline;
+    font-size: large;
+}
+
+ul {
+    list-style-type: circle;
+    padding-left: 30px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: var(--color-texto)
+}
+
+/* Estilo para cada elemento de la lista */
+ul li {
+    padding: 5px 5px;
+    margin-bottom: 2px;
+}
+
+img {
+    margin-left: 20%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 5px solid var(--azul-medio);
+    width: 60%;
+    height: auto;
+
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+caption{
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+td,
+th {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+table img {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+h1 {
+    background:
+        linear-gradient(90deg,
+            var(--azul-medio),
+            var(--negro));
+    margin-top: 10px;
+    padding-left: 10px;
+    color: var(--blanco);
+    font-size: 30px;
+    text-shadow: 2px 2px 2px var(--azul),
+        -2px 2px 2px var(--azul),
+        2px -2px 2px var(--azul),
+        -2px -2px 2px var(--azul);
+}
+
+h2 {
+    margin-top: 10px;
+    margin-left: 30px;
+    color: var(--blanco);
+    font-size: 20px;
+    text-shadow: 2px 2px 2px var(--azul-medio),
+        -2px 2px 2px var(--azul-medio),
+        2px -2px 2px var(--azul-medio),
+        -2px -2px 2px var(--azul-medio);
+}
+
+a {
+    color: var(--color-texto);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    background-color: var(--azul-medio);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+nav a {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    padding: 10px 0;
+    text-decoration: none;
+    color: white;
+    background-color: var(--azul-medio);
+    border-radius: 0px;
+    transition: all 0.3s ease;
+    font-size: 20px;
+}
+
+/* Hover y efecto visual solo con CSS */
+nav a:hover {
+    background-color: var(--azul);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--azul-medio);
+    border-radius: 12px;
+    border: 4px solid;
+    border-color: var(--azul-oscuro);
+    box-shadow: 0 4px 12px rgba(0, 195, 255, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+form hr {
+    width: 100%;
+    border: none;
+    height: 2px;
+    background-color: var(--color-texto);
+    margin: 20px 0;
+}
+
+form button {
+    padding: 10px 15px;
+    border: 2px solid;
+    border-color: var(--azul-oscuro);
+    border-radius: 10px;
+    background-color: var(--azul);
+    background:
+        linear-gradient(180deg,
+            var(--azul-oscuro),
+            var(--azul-medio));
+    font-size: 16px;
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+form button:hover {
+    background-color: var(--azul);
+    color: var(--negro);
+    border-color: var(--azul-oscuro);
+}
