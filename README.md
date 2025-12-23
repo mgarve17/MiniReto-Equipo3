@@ -93,7 +93,7 @@ Aventura de rol en la que lideras tu propio equipo en batallas contra diferentes
 
 **Hundir la flota:** añadir sistema de puntuaciones, contabilizar barcos hundidos, darle una interfaz.
 
-**Juego de rol:** añadir opciones de cancelar ataques y añadir sistema de puntuaciones.
+**Juego de rol:** añadir opciones de cancelar ataques y añadir sistema de puntuaciones, añadir retraso a la hora de mostrar los sprites para poder ver claramente la información, añadir sprites para los npcs.
 
 **Web:** animaciones en el ranking, inicio de sesión no simulado, y ranking no simulado.
 
