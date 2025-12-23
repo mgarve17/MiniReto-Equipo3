@@ -43,6 +43,8 @@ Hemos desarrollando una máquina virtual de Windows 11 Pro y una segunda de Ubun
 
 ## Web <!--AÑADIR FOTOS!!!-->
 
+[WEB](/Lenguaje-de-marcas)
+
 Web estática simple que tiene como finalidad recoger las reglas y puntuaciones de los juegos desarrollados. Cuenta con un apartado principal que redirige al usuario a la pestaña de normas o ranking según el juego seleccionado, y un login para futuros usuarios.
 
 
@@ -54,7 +56,7 @@ Web estática simple que tiene como finalidad recoger las reglas y puntuaciones 
 
 ##  🕹️ Juego: hundir la flota
 
-[ Hundir la flota ](/HundirLaFlota/)
+[ Hundir la flota ](/HundirLaFlota)
 
 Juego clásico de peleas navales para un único jugador. El usuario cuenta con una flota de 4 barcos que puede colocar libremente, y se enfrenta a la flota generada aleatoriamente por la máquina. 
 
@@ -70,7 +72,7 @@ Juego clásico de peleas navales para un único jugador. El usuario cuenta con u
 
 ## 🕹️ Juego: rol
 
-[Rol]
+[Rol](/AventuraRol/ROLL)
 
 Aventura de rol en la que lideras tu propio equipo en batallas contra diferentes criaturas.
 
@@ -81,3 +83,6 @@ Aventura de rol en la que lideras tu propio equipo en batallas contra diferentes
 **Clase enemigos:** semejante a la anterior, la clase de enemigos genera diferentes criaturas según su nombre, con estadísticas propias para cada uno, y el mismo método de ataque que contabiliza el daño según un número aleatorio. También incluye un diseño para cada enemigo que se muestra por pantalla en la pelea.
 
 ## Mejoras
+
+
+**Hundir la flota:** añadir sistema de puntuaciones, contabilizar barcos hundidos, darle una interfaz.
