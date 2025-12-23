@@ -37,7 +37,7 @@ Documentación del desarrollo del software de juegos básicos. Este espacio cont
 
 ## Implementación y despliegue
 
-[📑 Despliegue en Windows 11 ](/Manuales/ManualDeDespliegueW11.pdf") | [ 📑 Despliegue en Linux](/Manuales/ManualDespliegueLinux.pdf)
+[📑 Despliegue en Windows 11 ](MANUALES/ManualDeDespliegueW11.pdf) | [ 📑 Despliegue en Linux](/Manuales/ManualDespliegueLinux.pdf)
 
 Hemos desarrollando una máquina virtual de Windows 11 Pro y una segunda de Ubuntu 24.04. En los manuales se detalla todo el proceso desde la instalación hasta las instrucciones de uso.
 
@@ -86,3 +86,10 @@ Aventura de rol en la que lideras tu propio equipo en batallas contra diferentes
 
 
 **Hundir la flota:** añadir sistema de puntuaciones, contabilizar barcos hundidos, darle una interfaz.
+
+**Juego de rol:** añadir opciones de cancelar ataques y añadir sistema de puntuaciones.
+
+**Web:** animaciones en el ranking, inicio de sesión no simulado, y ranking no simulado.
+
+**Base de datos:** nombres más descriptivos.
+
