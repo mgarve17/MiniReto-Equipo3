@@ -37,7 +37,7 @@ Documentación del desarrollo del software de juegos básicos. Este espacio cont
 
 ## Implementación y despliegue
 
-[📑 Despliegue en Windows 11 ](MANUALES/ManualDeDespliegueW11.pdf) | [ 📑 Despliegue en Linux](/Manuales/ManualDespliegueLinux.pdf)
+[📑 Despliegue en Windows 11 ](/MANUALES/ManualDeDespliegueW11.pdf) | [ 📑 Despliegue en Linux](/MANUALES/ManualDeDespliegueLinux.pdf)
 
 Hemos desarrollando una máquina virtual de Windows 11 Pro y una segunda de Ubuntu 24.04. En los manuales se detalla todo el proceso desde la instalación hasta las instrucciones de uso.
 
@@ -50,7 +50,13 @@ Web estática simple que tiene como finalidad recoger las reglas y puntuaciones 
 
 ## Base de datos <!--AÑADIR FOTOS Y ARCVHIVOS-->
 
-[📑 E/R Rol](/BASE%20DE%20DATOS/Rol.pdf) | [Script Rol](/BASE%20DE%20DATOS/ROL.sql) | [E/R hundir la flota] | [Script hundir la flota]
+[🖼️ E/R Rol](/BASE%20DE%20DATOS/Mini-reto-ROL.drawio.png) | [Script Rol](/BASE%20DE%20DATOS/ROL.sql) | [🖼️ E/R hundir la flota](/BASE%20DE%20DATOS/TABLAS.png) | [Script hundir la flota](/BASE%20DE%20DATOS/Hundir_la_flota_BD.sql)
+
+Esquema relacional de la base de datos para el juego de rol
+![Rol](/BASE%20DE%20DATOS/Mini-reto-ROL.drawio.png)
+
+Esquema relacional de la base de datos para el juego de hundir la flota
+![FLota](/BASE%20DE%20DATOS/TABLAS.png)
 
 
 
