@@ -31,7 +31,7 @@ public class Npc {
         int vida = 0;
         switch (nombre) {
             case "mago":
-                vida = 8;
+                vida = 10;
                 break;
             case "clerigo":
                 vida = 15;
@@ -48,9 +48,9 @@ public class Npc {
     public int ataque(int num) {
         Scanner teclado = new Scanner(System.in);
         int atacks = (int) (Math.random() * 20) + 1; // saca un número del 1 al 20
-        if (atacks < 10) { //si saca menos de un 10 el modificador es de x0 (falla)
+        if (atacks < 8) { //si saca menos de un 10 el modificador es de x0 (falla)
             atacks = 0;
-        } else if (atacks >= 10 && atacks < 20) { //si saca entre 10 y 19 incluidos el modificador es de x1 (acierta)
+        } else if (atacks >= 8 && atacks < 20) { //si saca entre 10 y 19 incluidos el modificador es de x1 (acierta)
             atacks = 1;
         } else { //si saca un 20, el modificador es de x2 (crítico)
             atacks = 2;
@@ -61,24 +61,26 @@ public class Npc {
                 num = teclado.nextInt();
             }
             cooldown = false;
-            ataque = atacks;
+            ataque = 2 * atacks;
         } else {
             if (num == 1) {
-                ataque = atacks;
+                ataque = 2 * atacks;
+                cooldown=false;
             } else {
                 switch(nombre){
                     case "mago":
-                        this.ataque= 3*atacks;
+                        this.ataque= 5*atacks;
                         break;
                     case "clerigo":
                         this.ataque=-1; //cura a alguien 1 punto de vida, hay que hacerlo en el main
                         break;
                     case "barbaro":
-                        this.ataque= 2*atacks;
+                        this.ataque= 4*atacks;
                         break;
                     case "guerrero":
                         this.ataque= -2; //hará que el siguiente ataque de los enemigos le pegue a él
                 }
+                cooldown=true;
             }
         }
         return ataque;
@@ -88,6 +90,9 @@ public class Npc {
         return nombre;
     }
     public int getVida(){
+        if (hp<0){
+            hp=0;
+        }
         return hp;
     }
     

@@ -8,22 +8,98 @@ public class Enemigos {
     private boolean cooldown = false; //se puede usar el ataque especial
 
     public Enemigos() { //Constructor aleatorio
-        this.nombre=nombre();
-        this.hp=vida();
+        this.nombre = nombre();
+        this.hp = vida();
     }
     
-    public Enemigos(String nombre, int hp){ //constructor personalizado
-        this.nombre=nombre;
-        this.hp=hp;
+    public String dibujo(){
+        String dibujo="";
+        switch(getNombre()){
+            case "Goblin":
+                dibujo="""
+                                   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                   ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀
+                                   ⠀⠢⣤⣀⡀⠀⠀⠀⢿⣧⣄⡉⠻⢿⣿⣿⡿⠟⢉⣠⣼⡿⠀⠀⠀⠀⣀⣤⠔⠀
+                                   ⠀⠀⠈⢻⣿⣶⠀⣷⠀⠉⠛⠿⠶⡴⢿⡿⢦⠶⠿⠛⠉⠀⣾⠀⣶⣿⡟⠁⠀⠀
+                                   ⠀⠀⠀⠀⠻⣿⡆⠘⡇⠘⠷⠠⠦⠀⣾⣷⠀⠴⠄⠾⠃⢸⠃⢰⣿⠟⠀⠀⠀⠀
+                                   ⠀⠀⠀⠀⠀⠋⢠⣾⣥⣴⣶⣶⣆⠘⣿⣿⠃⣰⣶⣶⣦⣬⣷⡄⠙⠀⠀⠀⠀⠀
+                                   ⠀⠀⠀⠀⠀⠀⢋⠛⠻⠿⣿⠟⢹⣆⠸⠇⣰⡏⠻⣿⠿⠟⠛⡙⠀⠀⠀⠀⠀⠀
+                                   ⠀⠀⠀⠀⠀⠀⠈⢧⡀⠠⠄⠀⠈⠛⠀⠀⠛⠁⠀⠠⠄⢀⡼⠁⠀⠀⠀⠀⠀⠀
+                                   ⠀⠀⠀⠀⠀⠀⠀⠈⢻⣦⡀⠃⠀⣿⡆⢰⣿⠀⠘⢀⣴⡟⠁⠀⠀⠀⠀⠀⠀⠀
+                                   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣦⡀⠘⠇⠸⠃⢀⣴⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣷⣄⣠⣾⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                   """;
+                break;
+            case "Slime":
+                dibujo="""
+                                                 ░░░░░░░░
+                                             ░░░           ░░░░
+                                           ░░                    ░
+                                         ░░                      ░░
+                                       ░░                          ░░
+                                       ░░                            ░░
+                                     ░░                ░░    ░░    ░░
+                                     ░░                ██░   ██     ░░
+                                     ░░                ██░   ██     ░░
+                                     ░░           ░░                 ░░
+                                     ░░░                            ░░
+                                        ░░░                       ░░
+                                           ░░░░░░░░░░░░░░░░░
+                                                ░░░░░░░░░░
+                                   """;
+                break;
+            case "Arpía":
+                dibujo="""
+                                 ⠀⣰⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⡾
+                                  ⣿⡍⠛⠲⣶⣄⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⡴⠞⠉⣠⡞⠀⠀
+                                  ⠘⣽⢷⣦⣌⣈⠋⡚⠿⣦⡀⠀⠀⣀⣤⠀⠀⠀⣠⡶⠚⠛⣙⣭⠠⣤⣶⣯⠆⠀⠀⠀
+                                   ⣼⣷⣀⠀⠀⠈⠀⠀⠀⢻⡇⠺⡿⠛⣿⠀⠀⢿⠀⠀⣼⠿⣫⣭⣠⣤⡶⠂⠀⠀⠀
+                                   ⠉⠛⠿⣹⣾⠔⠃⠀⠈⠳⠾⠏⠀⠻⣶⡺⠋⠀⣤⣸⣷⣶⡾⠖⠀⠀⠀⠀⠀⠀
+                                    ⠈⠒⠷⣿⡻⣞⣀⣄⣀⣀⡄⠀⠀⣠⣄⣸⡿⣾⣿⡽⡄⠀⠀⠀⠀⠀⠀⠀⠀
+                                        ⠛⠟⠯⣽⢿⡿⠃⠀⢀⣿⡙⠑⠙⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                             ⢰⣯⣦⣾⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                             ⢸⣼⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                             ⠈⣿⢩⡿⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                              ⠈⣽⡃                                                         
+                                   """;
+                break;
+            case "Lobo":
+                dibujo="""
+                                ⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                ⠀⠀⠀⠀⠀⢾⠱⢕⠠⢀⡀⠀⠀⠀⠀⠀⠀
+                                ⠀⠀⠀⠀⠀⠈⢆⢸⢣⠁⠛⡄⠀⠀⠀⠀⠀
+                                ⠀⠀⠀⠀⠀⢠⢏⠨⢪⢫⣷⡻⢆⠀⠀⠀⠀
+                                ⠀⠀⠀⠀⣰⣯⢖⠆⠁⠀⣸⡈⠉⠀⠀⠀⠀
+                                ⠀⠀⠀⠀⡾⣇⡔⡳⠀⢠⢻⢳⣄⡀⠀⠀⠀
+                                ⠀⠀⠀⠀⠀⣿⡇⣯⣶⢄⠀⢢⡻⣦⡀⠀⠀
+                                ⠀⠀⠀⠀⠀⠘⢿⠼⢸⣋⠀⠀⡍⠻⣿⣦⠀
+                                ⠀⠀⠀⠀⠀⠀⠆⡇⢸⡠⣐⠥⡝⠶⠛⢿⠧
+                                ⠀⠀⠀⠀⢀⣠⣼⣧⣼⣷⣁⣒⣡⡴⠀⢸⡆
+                                ⠀⠀⠀⣪⠿⠗⠂⠀⠔⠊⠉⠉⠉⠉⢉⢢⠇
+                                ⠀⣠⠮⡷⠶⠿⠿⠭⠤⠤⣕⣲⣶⣶⠾⠋⠀
+                                ⠊⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                   """;
+                break;
+            default:
+                
+        }
+        return dibujo;
     }
-    
+
+    public Enemigos(String nombre, int hp) { //constructor personalizado
+        this.nombre = nombre;
+        this.hp = hp;
+    }
+
     public int restarVida(int ataque) { //Le resta vida al enemigo
         this.hp -= ataque;
         return this.hp;
     }
 
-    public int curar(int cura) { //Le cura al enemigo
-        this.hp += cura;
+    public int curar() { //Le cura al enemigo
+        this.hp += 1;
         return this.hp;
     }
 
@@ -44,9 +120,9 @@ public class Enemigos {
         }
         return nombre;
     }
-    
-    public int vida(){  //genera la vida total que tendrá el enemigo entre 10 y 20
-        this.hp=(int) (Math.random() * 11) + 10;
+
+    public int vida() {  //genera la vida total que tendrá el enemigo entre 10 y 20
+        this.hp = (int) (Math.random() * 11) + 10;
         return hp;
     }
 
@@ -66,19 +142,19 @@ public class Enemigos {
                 case "Goblin": //si es Goblin o Lobo tiene x ataques
                     if (atack == 2) { //el fuerte que pega 2 puntos de daño x el modificador
                         this.cooldown = true;
-                        this.ataque = atack * atacks;
+                        this.ataque = 3 * atacks;
                     } else { //el debil, que pega 1 punto de daño x el modificador
-                        this.ataque = atack * atacks;
+                        this.ataque = 2 * atacks;
                     }
                     break;
                 case "Arpía":
                 case "Slime": //si es Arpía o Slime tiene otros ataques
                     if (atack == 2) { //una cura que tiene cooldown
                         this.cooldown = true;
-                        curar(1);
-                        this.ataque=-1;
+                        curar();
+                        this.ataque = -1;
                     } else { //y el ataque normal x el modificador
-                        this.ataque = atack * atacks;
+                        this.ataque = 2 * atacks;
                     }
             }
         } else { //si no puede usar la habilidad fuerte se "tira un dado de 20 caras"
@@ -87,28 +163,31 @@ public class Enemigos {
             if (atacks < 10) {
                 this.ataque = 0;
             } else if (atacks >= 10 && atacks < 20) { //si saca entre 10 y 19 incluidos acierta
-                this.ataque = 1;
-            } else { //si saca un 20 obtiene un golpe crítico
                 this.ataque = 2;
+            } else { //si saca un 20 obtiene un golpe crítico
+                this.ataque = 4;
             }
         }
         return this.ataque;
     }
-    
-    public String getNombre(){
+
+    public String getNombre() {
         return nombre;
     }
-    
-    public int getVida(){
+
+    public int getVida() {
+        if (hp<0){
+            hp=0;
+        }
         return hp;
     }
-    
-    public boolean getCooldown(){
+
+    public boolean getCooldown() {
         return cooldown;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return "[Enemigos] Nombre = " + nombre + " HP = " + hp + " Cooldown = " + cooldown;
     }
 }
